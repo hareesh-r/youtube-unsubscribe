@@ -1,4 +1,4 @@
-let batchCounter = 0;
+let numUnsubscribedChannels = 0;
 let timeout = 100;
 let scrollHeightOfDiv = document.querySelector("#grid-container > ytd-channel-renderer:nth-child(1)");
 
@@ -40,8 +40,10 @@ async function executeUnsubscribeCode() {
     // Scroll one-third of the screen height of the div
     window.scrollBy(0, scrollHeightOfDiv.clientHeight);
 
+    numUnsubscribedChannels++; // Increment the count of unsubscribed channels
+
     if (i === numIterations - 1) {
-      console.log("Completed batch " + batchCounter++);
+      console.log("Number of channels unsubscribed so far: " + numUnsubscribedChannels);
       executeUnsubscribeCode();
     }
   }
