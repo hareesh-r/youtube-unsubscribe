@@ -9,9 +9,9 @@ async function unsubscribeFromAllChannels() {
     subscriptionButtons[i].click();
     await new Promise(resolve => setTimeout(resolve, timeout));
     
-    const unsubscribeOption = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item");
+    let unsubscribeOption = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item");
     if (unsubscribeOption == null) {
-      continue;
+      unsubscribeOption = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(2) > tp-yt-paper-item");
     }
     unsubscribeOption.click();
     await new Promise(resolve => setTimeout(resolve, timeout));
@@ -20,7 +20,7 @@ async function unsubscribeFromAllChannels() {
     confirmButton.click();
     await new Promise(resolve => setTimeout(resolve, timeout));
 
-    // Scroll one-third of the screen width to the bottom
+    // Scroll one-third of the screen height of the div
     window.scrollBy(0, scrollHeightOfDiv.clientHeight);
 
     if (i === 100) {
