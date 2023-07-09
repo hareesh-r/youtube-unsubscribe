@@ -1,4 +1,5 @@
-var batchCounter = 0;
+let batchCounter = 0;
+let timeout = 150;
 
 async function unsubscribeFromAllChannels() {
   const subscriptionButtons = document.querySelectorAll("#notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill");
@@ -15,15 +16,15 @@ async function unsubscribeFromAllChannels() {
     }
     
     subscriptionButtons[i].click();
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, timeout));
     
     const unsubscribeOption = document.querySelector("#items > ytd-menu-service-item-renderer:nth-child(4) > tp-yt-paper-item");
     unsubscribeOption.click();
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, timeout));
     
     const confirmButton = document.querySelector("#confirm-button > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill");
     confirmButton.click();
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, timeout));
     
     // Scroll one-third of the screen width to the bottom
     window.scrollBy(0, 140);
