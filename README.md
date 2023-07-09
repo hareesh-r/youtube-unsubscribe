@@ -14,7 +14,7 @@ This script automates the process of unsubscribing from YouTube channels using t
    - For Google Chrome, press `Ctrl + Shift + J` (Windows/Linux) or `Cmd + Option + J` (Mac).
    - For Mozilla Firefox, press `Ctrl + Shift + K` (Windows/Linux) or `Cmd + Option + K` (Mac).
    - For other browsers, refer to the browser's documentation for opening the developer console.
-3. Copy the code from the script file provided.
+3. Copy the code from the script file provided. [Latest Code](https://github.com/hareesh-r/youtube-unsubscribe/blob/main/script.js)
  ```javascript
 let batchCounter = 0;
 let timeout = 100;
