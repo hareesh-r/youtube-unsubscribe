@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "YouTube Channel Unsubscription",
+	"version": "1.0",
+	"description": "Automates the process of unsubscribing from YouTube channels",
+	"content_scripts": [
+		{
+			"matches": ["https://www.youtube.com/feed/channels*"],
+			"js": ["content.js"],
+			"run_at": "document_end"
+		}
+	],
+	"permissions": ["activeTab"],
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "icon16.png",
+			"48": "icon48.png",
+			"128": "icon128.png"
+		}
+	}
+}
