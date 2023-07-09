@@ -44,9 +44,14 @@ async function executeUnsubscribeCode() {
 }
 
 async function startUnsubscribeProcess() {
-  window.scrollTo(0, document.body.scrollHeight);
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  scrollDownAndRepeat();
+  const estimatedTime = 101 * timeout / 1000; // Calculate the estimated time in seconds
+  const confirmationMessage = `The process will start in approximately ${estimatedTime} seconds. Please wait.`;
+  alert(confirmationMessage);
+  window.location.href = "https://www.youtube.com/feed/channels";
 }
 
-startUnsubscribeProcess();
+if (window.location.href !== "https://www.youtube.com/feed/channels") {
+  startUnsubscribeProcess();
+} else {
+  scrollDownAndRepeat();
+}
