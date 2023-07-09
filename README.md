@@ -20,23 +20,27 @@ let batchCounter = 0;
 let timeout = 100;
 let scrollHeightOfDiv = document.querySelector("#grid-container > ytd-channel-renderer:nth-child(1)");
 
+const numIterations = 101;
+const numRepeats = 5;
+const scrollDelay = 2000;
+
 async function scrollDownAndRepeat() {
   const windowHeight = window.innerHeight;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < numRepeats; i++) {
     window.scrollTo(0, document.body.scrollHeight);
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, scrollDelay));
   }
 
   window.scrollTo(0, 0);
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  await new Promise(resolve => setTimeout(resolve, scrollDelay));
   executeUnsubscribeCode();
 }
 
 async function executeUnsubscribeCode() {
   const subscriptionButtons = document.querySelectorAll("#notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button > yt-touch-feedback-shape > div > div.yt-spec-touch-feedback-shape__fill");
 
-  for (let i = 0; i < 101; i++) {
+  for (let i = 0; i < numIterations; i++) {
     subscriptionButtons[i].click();
     await new Promise(resolve => setTimeout(resolve, timeout));
 
@@ -54,7 +58,7 @@ async function executeUnsubscribeCode() {
     // Scroll one-third of the screen height of the div
     window.scrollBy(0, scrollHeightOfDiv.clientHeight);
 
-    if (i === 100) {
+    if (i === numIterations - 1) {
       console.log("Completed batch " + batchCounter++);
       executeUnsubscribeCode();
     }
@@ -62,18 +66,17 @@ async function executeUnsubscribeCode() {
 }
 
 async function startUnsubscribeProcess() {
-  const estimatedTime = 101 * timeout / 1000; // Calculate the estimated time in seconds
+  const estimatedTime = numIterations * timeout / 1000; // Calculate the estimated time in seconds
   const confirmationMessage = `The process will start in approximately ${estimatedTime} seconds. Please wait.`;
   alert(confirmationMessage);
-  window.location.href = "https://www.youtube.com/feed/channels";
-}
-
-if (window.location.href !== "https://www.youtube.com/feed/channels") {
-  startUnsubscribeProcess();
-} else {
   scrollDownAndRepeat();
 }
 
+if (window.location.href !== "https://www.youtube.com/feed/channels") {
+  window.location.href = "https://www.youtube.com/feed/channels";
+} else {
+  startUnsubscribeProcess();
+}
 
 ```
 
